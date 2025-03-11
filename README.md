@@ -1,55 +1,138 @@
-<<<<<<< HEAD
-# Welcome to your Expo app 👋
+# Documentação: Uso do Módulo @react-native-community/datetimepicker (Android)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Explicação Detalhada
 
-## Get started
+### O que faz o `mode` no DateTimePicker?
 
-1. Install dependencies
+O `mode` define o tipo de seletor exibido para o usuário. No Android, ele pode assumir os seguintes valores:
 
-   ```bash
-   npm install
-   ```
+- **`date`**: Exibe um seletor para escolher apenas a data (dia, mês e ano).
 
-2. Start the app
+  **Exemplo de uso**:
+  ```jsx
+  <DateTimePicker 
+    value={date} 
+    mode="date" 
+    display="calendar" 
+  />
+Este exemplo exibe um calendário interativo para o usuário selecionar a data.
 
-   ```bash
-    npx expo start
-   ```
+time: Exibe um seletor para escolher apenas o horário (hora e minutos).
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+Exemplo de uso:
+```jsx
+<DateTimePicker 
+  value={time} 
+  mode="time" 
+  display="clock" 
+/>
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Neste caso, será exibido um relógio interativo para o usuário selecionar o horário.
 
-## Learn more
+### O que faz o display no DateTimePicker?
+O display define a aparência visual do seletor no Android. Os valores disponíveis são:
 
-To learn more about developing your project with Expo, look at the following resources:
+default: Usa o estilo padrão do sistema operacional.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Exemplo de uso:
+```jsx
+<DateTimePicker 
+  value={date} 
+  mode="date" 
+  display="default" 
+/>
+```
+Aqui, o estilo padrão do sistema será usado.
 
-## Join the community
+spinner: Exibe um seletor com formato de rolagem.
 
-Join our community of developers creating universal apps.
+Exemplo de uso:
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
-=======
-# TelasExpo
-Projeto criado em React Native, utilizando tecnologias do expo (DateTimePicker e Accelerometer).
->>>>>>> 60dc15e24fcabf8c0c4d62e13cab00956d976706
+```jsx
+<DateTimePicker 
+  value={time} 
+  mode="time" 
+  display="spinner" 
+/>
+```
+Este exemplo mostrará um seletor de rolagem para o usuário selecionar o horário.
+
+calendar: Exibe um calendário interativo (somente para mode="date").
+
+Exemplo de uso:
+
+```jsx
+<DateTimePicker 
+  value={date} 
+  mode="date" 
+  display="calendar" 
+/>
+```
+Um calendário interativo será exibido para o usuário selecionar uma data.
+
+clock: Exibe um relógio interativo (somente para mode="time").
+
+Exemplo de uso:
+```jsx
+<DateTimePicker 
+  value={time} 
+  mode="time" 
+  display="clock" 
+/>
+```
+Um relógio interativo será mostrado para o usuário escolher o horário.
+
+### Estilização do DateTimePicker
+Como o DateTimePicker é renderizado como um componente nativo no Android, sua estilização direta é limitada. No entanto, é possível personalizar sua aparência usando as seguintes técnicas:
+
+1. Envolver dentro de um View estilizado
+
+Esta abordagem permite personalizar o contêiner em torno do DateTimePicker:
+
+```jsx
+<View 
+  style={{
+    backgroundColor: 'white', 
+    borderRadius: 10, 
+    padding: 10
+  }}
+>
+  <DateTimePicker 
+    value={date} 
+    mode="date" 
+    display="calendar" 
+  />
+</View>
+```
+
+Neste exemplo, o DateTimePicker será exibido dentro de um contêiner com fundo branco, bordas arredondadas e preenchimento interno.
+
+2. Estilizar o botão de ativação
+
+Para melhorar a aparência do botão que abre o seletor de data/hora:
+```jsx
+<TouchableOpacity 
+  style={{
+    backgroundColor: '#4CAF50', 
+    padding: 10, 
+    borderRadius: 5
+  }} 
+  onPress={showDatePicker}
+>
+  <Text 
+    style={{
+      color: 'white', 
+      textAlign: 'center'
+    }}
+  >
+    Selecionar Data
+  </Text>
+</TouchableOpacity>
+```
+Este exemplo cria um botão verde com texto branco centralizado. Quando clicado, ele ativa o seletor de data/hora.
+
+### Conclusão
+Com o uso correto das propriedades mode e display, é possível controlar como o DateTimePicker se comporta e aparece no Android. Além disso, usando técnicas de estilização, você pode ajustá-lo à identidade visual do seu aplicativo, mesmo com as limitações de componentes nativos.
+
+Se necessário, continue explorando personalizações e ajustes para atender às suas necessidades específicas.
